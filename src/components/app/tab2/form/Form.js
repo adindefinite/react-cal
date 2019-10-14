@@ -9,7 +9,8 @@ class Form extends Component {
                 start:"2019-09-19",
                 end:"2019-09-25",
                 pageno:'1',
-                pagesize:'7'
+                pagesize:'7',
+                localtime:'2019-09-25 10:39:34'
         }
     }
     //对用户选择的日期进行判断
@@ -44,7 +45,9 @@ class Form extends Component {
         }
         if(btn==='同步'){
             //同步时间设置
-            document.getElementById("updatetime").innerHTML=getLocalTime();
+            this.setState({
+                localtime:getLocalTime()
+            })
         }
         let appselect = document.getElementById("selected1");　　//获取select对象
     let app = appselect.options[appselect.selectedIndex].value;　　　　　　//获取被选中的值
@@ -102,7 +105,7 @@ class Form extends Component {
                         })
                     }
                 </div>
-                <div style={{fontSize: 14}}>交易上次手动同步时间：<span id="updatetime">2019-09-25 10:39:34</span></div>
+                <div style={{fontSize: 14}}>交易上次手动同步时间：<span>{this.state.localtime}</span></div>
             </div>
         );
     }
