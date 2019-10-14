@@ -50,14 +50,14 @@ class Form extends Component {
             })
         }
         let appselect = document.getElementById("selected1");　　//获取select对象
-    let app = appselect.options[appselect.selectedIndex].value;　　　　　　//获取被选中的值
-    if(app==="交易"){
-        app="trade";
-    }
-    let start=document.getElementById("user_date1").value;//开始日期
-    let end=document.getElementById("user_date2").value;//结束日期
-    let pageselect = document.getElementById("selected2");　　//获取select对象，每页数量
-    let psize = pageselect.options[pageselect.selectedIndex].value;//获取被选中的值
+        let app = appselect.options[appselect.selectedIndex].value;　　　　　　//获取被选中的值
+        if(app==="交易"){
+            app="trade";
+        }
+        let start=document.getElementById("user_date1").value;//开始日期
+        let end=document.getElementById("user_date2").value;//结束日期
+        let pageselect = document.getElementById("selected2");　　//获取select对象，每页数量
+        let psize = pageselect.options[pageselect.selectedIndex].value;//获取被选中的值
         this.setState({
             app:app,
             start:start,
