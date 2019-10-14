@@ -1,0 +1,388 @@
+$color:#2399ED;
+body{
+    margin: 0px;
+}
+//顶行样式
+.topnav{
+    height: 35px;
+    width: 100%;
+    display:flex; 
+    flex-direction: row;
+    justify-content: center;
+    background-color:#ECFFE7;
+}
+.airport{
+    width: 15px;
+    height:15px;
+    margin:8px 5px 10px 30px;
+}
+.top_text1{
+    width:70%;
+    color: #4DB63A;
+    flex:1;
+    font-size: 14px;
+    line-height: 35px;
+}
+.top_text2{
+    width: 10%;
+    color: #4DB63A;
+    font-size: 14px;
+    line-height: 35px;
+    text-align: right;
+}
+.top_text3{
+    width: 5%;
+    color:$color;
+    font-size: 14px;
+    line-height: 35px;
+    text-align: right;
+    margin-right: 10px;
+}
+
+//标签切换样式
+.content{
+    width: 100%;
+    height: 600px;
+}
+.tab_nav {
+    width: 100%;
+    height: 25px;
+    float: left;
+    border-bottom: 1px solid #DDDDDD;
+    color: black;
+    > * {
+        padding: 0px;
+        margin: 0px;
+        height: 100%;
+        color: black;
+        text-align: center;
+        line-height: 25px;
+        text-decoration: none;
+        border-radius: 0.2em 0.2em 0em 0em;
+        float: left;
+        font-size: 12px;
+        border-bottom: 0px;
+        width: auto;
+        height: 100%;
+        margin: auto;
+        padding:0px 15px;
+    }
+}
+.tab_nav_selected{
+    border-left: 1px solid #DDDDDD;
+    border-right: 1px solid #DDDDDD;
+    padding:0px 10px;
+    font-weight: bold;
+    border-top: 1px solid #DDDDDD;
+    color: $color;
+}
+
+.tab_div {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+.tab_div_none{
+    display: none;
+}
+.tab_div_block{
+    display: block;
+}
+//计算器样式
+$border: 1px solid black;
+.flex{
+    display:flex;
+}
+.box{
+    width:408px;
+    height:520px;
+    background-color: black;
+    font-size: 25px;
+    color: white;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: auto;
+    position: relative;
+}
+.box_left{
+    height: 30px;
+    width: 100px;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items:center;
+    div:nth-child(1){
+        background-color:red;
+    }
+    div:nth-child(2){
+        background-color: orange;
+    }
+    div:nth-child(3){
+        background-color: limegreen;
+    }
+}
+.circle{
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+}
+.top{
+    height:80px;
+    width:100%;
+    font-size: 30px;
+    flex-direction: row;
+    align-items: center;//靠上
+    justify-content: flex-end;//靠右
+}
+.main{
+    width: 100%;
+    height: 410px;
+    text-align: center;
+    flex-direction: row;
+    flex-wrap: wrap;//换行
+    align-items: center;//item垂直居中对齐
+    justify-content: center;//item水平居中对齐
+    div{
+        width: 100px;
+        height: 80px;
+        display: block;
+        background-color:gray;
+        border:$border;
+    }
+    div:nth-child(1),div:nth-child(2),div:nth-child(3){
+        background-color:slategray;
+    }
+    div:nth-child(4),div:nth-child(8),div:nth-child(12),div:nth-child(16),div:nth-child(19){
+        background-color:orange;
+    }
+    div:nth-child(17){
+        flex-grow:1;
+    }
+}
+
+//将一段常用的代码抽象成mixin，需要使用的时候调用
+@mixin animation($animate...) {
+    animation: $animate;
+    -webkit-animation: $animate;
+}
+
+@mixin transform($rorate...) {
+    transform: rotate($rorate);
+    -webkit-transform: rotate($rorate);
+}
+@mixin delay($delay...) {
+    animation-delay:$delay;
+    -webkit-animation-delay:$delay;
+}
+
+
+.loading{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50px,-50px);
+    z-index: 2;
+    span{
+        display: inline-block;
+        width: 30px;
+        height: 10px;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        background:#DCDCDC;
+        position: absolute;
+        opacity: 0.3;
+        @include animation(load 1.5s ease infinite);
+        //animation: load 1.5s ease infinite;
+        //-webkit-animation: load 1.5s ease infinite;
+    }
+    span:nth-child(1){
+        left: 0;
+        top: 50%;
+        margin-top:-5px;
+        @include delay(0.125s);
+    }
+
+    span:nth-child(2){
+        left: 5%;
+        top: 28%;
+        @include transform(30deg);
+        @include delay(0.25s);
+    }
+    span:nth-child(3){
+        left: 17%;
+        top: 15%;
+        @include transform(60deg);
+        @include delay(0.375s);
+    }
+    span:nth-child(4){
+        top: 10%;
+        left:50%;
+        margin-left: -15px;
+        @include transform(90deg);
+        @include delay(0.5s);
+    }
+    span:nth-child(5){
+        right: 17%;
+        top: 15%;
+        @include transform(120deg);
+        @include delay(0.625s);
+    }
+    span:nth-child(6){
+        right: 5%;
+        top:28%;
+        @include transform(150deg);
+        @include delay(0.75s);
+    }
+    span:nth-child(7){
+        top:50%;
+        right:0%;
+        margin-top: -5px;
+        @include transform(180deg);
+        @include delay(0.875s);
+    }
+    span:nth-child(8){
+        right:5%;
+        bottom: 28%;
+        @include transform(210deg);
+        @include delay(1.0s);
+    }
+    span:nth-child(9){
+        right: 17%;
+        bottom:15%;
+        @include transform(240deg);
+        @include delay(1.125s);
+    }
+    span:nth-child(10){
+        bottom: 10%;
+        left: 50%;
+        margin-left:-15px;
+        @include transform(270deg);
+        @include delay(1.25s);
+    }
+    span:nth-child(11){
+        left: 17%;
+        bottom: 15%;
+        @include transform(300deg);
+        @include delay(1.375s);
+    }
+    span:nth-child(12){
+        left: 5%;
+        bottom: 28%;
+        margin-top: -5px;
+        @include transform(330deg);
+        @include delay(1.5s);
+    }
+    
+}
+.loading_none{
+    display:none;
+}
+.loading_block{
+    display:block;
+}
+
+@keyframes load{
+0%{
+    opacity: 1;
+}
+100%{
+    opacity: 0.3;
+}
+}
+//列表显示样式
+.table{
+    display:table;
+    border-collapse:collapse;
+    font-size:12px;
+    margin:auto 10px;
+    border:1px solid #ccc;
+    width: 98%;
+}  
+.table-caption{
+    display:table-caption;
+    margin:0;
+    padding:0;
+    font-size:12px;
+}
+.table-row-group{
+    display:table-row-group;
+}
+.table-footer-group{
+    display:table-footer-group;
+    ul{
+        margin:0;
+        padding:0;
+        list-style:none;
+    }
+}
+.table-row{
+    display:table-row;
+    &:hover{
+        background-color: #DCDCDC;
+    }
+}  
+.table-cell{
+    display:table-cell;
+    padding:8px 10px 8px 5px;
+    border:1px solid #ccc;
+    border-left: 0px;
+    border-right: 0px;
+}  
+.table-header-group{
+    display:table-header-group;
+    background:#eee;
+    font-weight:bold;
+    ul{
+        margin:0;
+        padding:0;
+        list-style:none;
+    } 
+}
+.check{
+    width: 100%;
+    height: 60px;
+    flex-direction: row;
+    align-items:center;
+}
+.check-selected{
+    width: 130px;
+    select {
+        width: 85%;
+        height: 20px;
+        padding-left: 8px;
+        border-radius: 0.2em;
+        margin:10px 5px 10px 20px;
+        /*重置Chrome和Firefox的select边框样式*/
+        border: 1px solid #DDDDDD;
+        /*清除默认的select选择框样式*/
+        appearance:none;
+        -moz-appearance:none;
+        -webkit-appearance:none;
+        background-color: white;
+        /*在选择框的最右侧中间显示小箭头图片*/
+        background: url("./img/selected.png") no-repeat scroll right center transparent;
+        /*为下拉小箭头留出一点位置，避免被文字覆盖*/
+        padding-right: 14px;
+        }
+        /*清除IE的默认选择框样式，隐藏下拉箭头*/
+        select::-ms-expand { display: none; }
+}
+.showdates input{
+    width: 120px;
+}
+
+.button{
+    width: 50px;
+    height: 25px;
+    background-color:$color;
+    border-radius: 3px;
+    margin: 0px;
+    color: white;
+    outline: none;//去除按钮点击后外面一圈
+}
+.pages{
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
