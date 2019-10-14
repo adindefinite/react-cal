@@ -13,10 +13,34 @@ class Form extends Component {
                 localtime:'2019-09-25 10:39:34'
         }
     }
-    //对用户选择的日期进行判断
-    check(date){
-        //console.log(date.target.value);
+    //app选择
+    selected1(e){
+        this.setState({
+            app:e.target.value
+        })
     }
+
+    //psize选择
+    selected2(e){
+        this.setState({
+            pagesize:e.target.value
+        })
+    }
+
+    //开始日期
+    start(e){
+        this.setState({
+            start:e.target.value
+        })
+    }
+
+    //结束日期
+    end(e){
+        this.setState({
+            end:e.target.value
+        })
+    }
+
     //对选中的按钮点击事件判断
     getBtnCh(btn){
         let getLocalTime=()=>{
@@ -49,23 +73,17 @@ class Form extends Component {
                 localtime:getLocalTime()
             })
         }
-        let appselect = document.getElementById("selected1");　　//获取select对象
-        let app = appselect.options[appselect.selectedIndex].value;　　　　　　//获取被选中的值
-        if(app==="交易"){
-            app="trade";
-        }
-        let start=document.getElementById("user_date1").value;//开始日期
-        let end=document.getElementById("user_date2").value;//结束日期
-        let pageselect = document.getElementById("selected2");　　//获取select对象，每页数量
-        let psize = pageselect.options[pageselect.selectedIndex].value;//获取被选中的值
         this.setState({
-            app:app,
-            start:start,
-            end:end,
-            pageno:'1',
-            pagesize:psize,
+            pageno:'1'
         },()=>{
-            this.props.getChangePage(this.state);//同步更新后显示页面数应该为第一页
+            let arr={
+                app:this.state.app,
+                start:this.state.start,
+                end:this.state.end,
+                pageno:this.state.pageno,
+                pagesize:this.state.pagesize
+            };
+            this.props.getChangePage(arr);//同步更新后显示页面数应该为第一页
         });
         
     }
@@ -75,13 +93,13 @@ class Form extends Component {
         return (
             <div className="check flex">
                 <div className="check-selected">
-                    <select id="selected1">
-                        <option value="交易">交易</option>
-                        <option value="其他">其他</option>
+                    <select onChange={this.selected1.bind(this)} defaultValue="trade">
+                        <option value="trade">交易</option>
+                        <option value="other">其他</option>
                     </select>
                 </div>
                 <div className="check-selected">
-                    <select id="selected2" defaultValue="7">
+                    <select onChange={this.selected2.bind(this)} defaultValue="7">
                         {
                             options.map((item,key)=>{
                                 return(
@@ -93,8 +111,8 @@ class Form extends Component {
                 </div>
                 <div className="showdates" style={{fontSize:14}}>
                         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日期选择</span>&nbsp;
-                        <input type="date" id="user_date1" defaultValue="2019-09-19" onChange={this.check.bind(this)} /> -&nbsp;
-                        <input type="date" id="user_date2"  defaultValue="2019-09-25" onChange={this.check.bind(this)}/>&nbsp;
+                        <input type="date" id="user_date1" defaultValue="2019-09-19" onChange={this.start.bind(this)} /> -&nbsp;
+                        <input type="date" id="user_date2"  defaultValue="2019-09-25" onChange={this.end.bind(this)}/>&nbsp;
                     </div>
                 <div>
                     {

@@ -79,6 +79,7 @@ class Table extends Component {
         let lis=[1,2,3,4,5,6,7,8,9,10,11,12,13];
         let title=['日期','付费人数','免费人数','客单价','总收入','到期（人）','新订（单）','续订（单）','升级（单）','后台（单）','续订率','一个月（单）','一季度（单）','半年（单）','一年（单）','来源'];
         let json=this.ShowDate().jsons;//获取表格最新数据
+        console.log(this.props.FormDate);
         return (
             <div className="table">
                 <div className="table-header-group">
