@@ -20,7 +20,7 @@ class List extends Component {
     render() {
         return (
             <div>
-                <Form ref='leo' getChangePage={this.updateDate.bind(this)}/>
+                <Form getChangePage={this.updateDate.bind(this)}/>
                 <Table FormDate={this.state}/>
             </div>
         );

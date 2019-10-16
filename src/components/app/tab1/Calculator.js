@@ -55,7 +55,7 @@ class Calculator extends Component{
             s_results = "0";
             s_type=false;
             s_negative=false;
-        }//计算过程
+        }//正负
         else if(res === "+/-"){
             if(s_results==="0"){//初始化状态0不可以修改正负数的数字
                 return;
